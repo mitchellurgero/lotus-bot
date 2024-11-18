@@ -1,5 +1,6 @@
 import { PrismaClient } from '../prisma/prisma-client-js'
-import { AccountUtxo } from './wallet'
+import type { AccountUtxo } from './wallet'
+import type { PlatformName } from './platforms'
 
 type Deposit = AccountUtxo & {
   timestamp: Date
@@ -27,8 +28,6 @@ enum PlatformUserTable {
   discord = 'userDiscord',
   twitter = 'userTwitter',
 }
-
-type Platform = 'telegram' | 'discord' | 'twitter'
 
 export class Database {
   private prisma: PrismaClient
@@ -67,7 +66,7 @@ export class Database {
 
   /** Check db to ensure `userId` exists */
   isValidUser = async (
-    platform: Platform,
+    platform: PlatformName,
     platformId: string,
   ): Promise<boolean> => {
     try {
@@ -129,7 +128,7 @@ export class Database {
     }
   }
   /** Get `userId` and `accountId` for the specified `platformId` */
-  getIds = async (platform: Platform, platformId: string) => {
+  getIds = async (platform: PlatformName, platformId: string) => {
     try {
       //@ts-ignore
       const result = await this.prisma[PlatformUserTable[platform]].findFirst({
@@ -172,7 +171,7 @@ export class Database {
       return result?.accountId
     } catch (e: any) {}
   }
-  getUserSecret = async (platform: Platform, platformId: string) => {
+  getUserSecret = async (platform: PlatformName, platformId: string) => {
     try {
       //@ts-ignore
       const result = await this.prisma[PlatformUserTable[platform]].findFirst({
