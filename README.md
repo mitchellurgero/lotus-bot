@@ -16,6 +16,15 @@ _Continuous Testing & Integration not implemented yet_
 
 ## Automatic Installation - Linux
 
+### Docker Installation (Recommended)
+
+Simply `git clone https://github.com/LotusiaStewardship/lotus-bot`, edit the docker-compose file as needed, then `docker compose up`.
+
+First time run in docker might take a few minutes to complete as it installs dependencies, sets up TypeScript, prisma, and the database.
+
+
+### Bare Metal Installation (Advanced)
+
 **Prerequisites**
 
 Please install the following packages on your system for the automatic installer to work:

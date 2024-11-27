@@ -1,0 +1,34 @@
+services:
+  postgresdb:
+    image: postgres
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      - POSTGRES_USER=lotusbot
+      - POSTGRES_PASSWORD=lotusbot
+      - POSTGRES_DB=lotusbot
+    ports:
+      - 5432:5432
+    volumes:
+      - db:/var/lib/postgres
+
+  app:
+    depends_on:
+      - postgresdb
+    build: .
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      - DB_HOST=postgresdb
+      - DB_USER=lotusbot
+      - DB_PASSWORD=lotusbot
+      - DB_NAME=lotusbot
+      - DB_PORT=5432
+      - DB_SCHEMA=lotusbot
+    volumes:
+      - ./:/opt/lotusbot
+    stdin_open: true
+    tty: true
+
+volumes: 
+  db:
