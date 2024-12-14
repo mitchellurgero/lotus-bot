@@ -7,3 +7,4 @@ lib/*.js
 lib/platforms/*.js
 util/*.js
 /*.js
+firstrun

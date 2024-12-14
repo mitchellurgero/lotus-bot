@@ -91,3 +91,8 @@ model WalletKey {
   user User @relation(fields: [userId], references: [id])
   @@index([userId])
 }
+
+model ExtensionInstance {
+  extensionId String @unique
+  pseudorank Int
+}
