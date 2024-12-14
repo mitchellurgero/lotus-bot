@@ -1,5 +1,6 @@
 FROM node:18
 
-WORKDIR .
-COPY docker-start.sh
-CMD docker-start.sh
+WORKDIR /opt/lotusbot
+COPY docker-start.sh /opt/docker-start.sh
+RUN chmod +x /opt/docker-start.sh
+CMD /opt/docker-start.sh

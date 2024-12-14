@@ -27,8 +27,6 @@ services:
       - DB_SCHEMA=lotusbot
     volumes:
       - ./:/opt/lotusbot
-    stdin_open: true
-    tty: true
 
 volumes: 
   db:
